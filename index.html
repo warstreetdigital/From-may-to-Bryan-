@@ -1,135 +1,215 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#160d16">
-<title>For Bryan Mabani | WarStreet Memories</title>
+<meta name="theme-color" content="#100d19">
+<title>Baba Zuva, My Forever | WarStreet Memories</title>
 
 <style>
 :root {
-  --bg: #160d16;
-  --panel: #251725;
-  --pink: #e6b8cc;
-  --muted: #bdaab8;
-  --line: #493343;
-  --white: #fff8fb;
+  --bg: #100d19;
+  --surface: #1b1727;
+  --surface2: #252035;
+  --pink: #f1b9d5;
+  --purple: #b7a3ff;
+  --text: #fff9ff;
+  --muted: #b9b2c8;
+  --line: rgba(255,255,255,.10);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   min-height: 100vh;
   min-height: 100svh;
-  background: radial-gradient(ellipse at top, #352034, var(--bg) 60%);
-  color: var(--white);
-  font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 16px;
+  background:
+    radial-gradient(ellipse at 12% 12%, rgba(151,92,194,.19), transparent 42%),
+    radial-gradient(ellipse at 92% 45%, rgba(88,116,199,.16), transparent 40%),
+    radial-gradient(ellipse at 48% 100%, rgba(224,119,176,.12), transparent 45%),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding: 28px 17px 35px;
 }
 
 main {
-  width: 100%;
   max-width: 460px;
+  margin: auto;
   text-align: center;
 }
 
 .eyebrow {
   color: var(--pink);
-  font-size: 11px;
-  font-weight: bold;
+  font-size: 10px;
+  font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
 
 h1 {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(36px, 9vw, 54px);
-  font-weight: normal;
-  line-height: 1.12;
-  margin: 22px 0 12px;
+  font-weight: 400;
+  font-size: clamp(35px, 9vw, 49px);
+  line-height: 1.13;
+  margin: 17px 0 12px;
 }
 
 .intro {
-  color: #e0d2dc;
-  font-size: 15px;
+  color: var(--muted);
   line-height: 1.8;
-  margin-bottom: 28px;
+  font-size: 14px;
+  max-width: 320px;
+  margin: 0 auto 28px;
 }
 
-.divider {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--line),
-    transparent
-  );
-  margin: 28px 0;
-}
-
-.music-mark {
-  width: 58px;
-  height: 58px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
+.music-symbol {
+  width: 54px;
+  height: 54px;
   display: grid;
   place-items: center;
-  margin: 0 auto 16px;
+  margin: 0 auto 14px;
+  border: 1px solid rgba(241,185,213,.3);
+  border-radius: 50%;
   color: var(--pink);
-  font-size: 27px;
+  font-size: 24px;
+  background: linear-gradient(135deg, #33223f, #211b34);
+  box-shadow: 0 0 28px rgba(183,163,255,.12);
 }
 
 .song-title {
   font-family: Georgia, "Times New Roman", serif;
-  font-weight: normal;
-  font-size: clamp(25px, 6vw, 32px);
   color: var(--pink);
-  margin: 0 0 10px;
+  font-size: clamp(25px, 6vw, 32px);
+  font-weight: 400;
+  line-height: 1.25;
+  margin: 0 0 9px;
 }
 
 .dedication {
   color: var(--muted);
-  font-size: 14px;
+  font-size: 13px;
+  margin: 0;
 }
 
+/* Glowing photo memory card */
+.photo-stage {
+  position: relative;
+  width: 100%;
+  margin: 30px auto 12px;
+  padding: 1px;
+  border-radius: 25px;
+  isolation: isolate;
+}
+
+.photo-stage::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: -1;
+  border-radius: 29px;
+  background: conic-gradient(
+    from 0deg,
+    #a98aff,
+    #f1b9d5,
+    #6e8dff,
+    #c59aff,
+    #a98aff
+  );
+  filter: blur(13px);
+  opacity: .42;
+  animation: glow 7s linear infinite;
+}
+
+.photo-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 7px;
+  background: linear-gradient(145deg, #332a48, #171521 65%, #35213b);
+  border: 1px solid rgba(255,255,255,.13);
+  box-shadow: 0 18px 50px rgba(0,0,0,.34);
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 440px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 18px;
+  background: #181421;
+}
+
+.photo-heart {
+  position: absolute;
+  top: 16px;
+  right: 17px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 16px;
+  background: rgba(27,20,39,.72);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(12px);
+}
+
+.photo-caption {
+  color: #c6b7d2;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 17px 0 29px;
+}
+
+@keyframes glow {
+  0% { filter: blur(13px); opacity: .30; }
+  50% { filter: blur(17px); opacity: .58; }
+  100% { filter: blur(13px); opacity: .30; }
+}
+
+/* Countdown */
 .countdown-card {
-  background: rgba(37, 23, 37, 0.9);
+  background: linear-gradient(145deg, rgba(40,34,59,.92), rgba(26,22,39,.96));
   border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 24px 12px;
-  margin: 28px 0;
+  border-radius: 23px;
+  padding: 23px 12px;
+  margin: 28px 0 22px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.13);
 }
 
 .countdown-label {
   color: var(--pink);
   font-size: 10px;
-  font-weight: bold;
   letter-spacing: 2px;
+  font-weight: 700;
   margin: 0 0 20px;
 }
 
 .countdown {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 7px;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 8px;
 }
 
 .time-unit {
-  background: rgba(0, 0, 0, 0.18);
-  border-radius: 12px;
-  padding: 14px 2px;
+  background: rgba(9,8,17,.35);
+  border: 1px solid rgba(255,255,255,.035);
+  border-radius: 14px;
+  padding: 14px 2px 12px;
 }
 
 .number {
   display: block;
-  font-size: clamp(23px, 6vw, 31px);
-  font-weight: bold;
+  font-size: clamp(23px, 6vw, 30px);
+  font-weight: 650;
   font-variant-numeric: tabular-nums;
 }
 
@@ -141,63 +221,145 @@ h1 {
   margin-top: 8px;
 }
 
-.lock {
+/* Custom music player */
+.player {
+  text-align: left;
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 23px;
+  padding: 17px;
+  background:
+    linear-gradient(120deg, rgba(183,163,255,.10), transparent 55%),
+    linear-gradient(145deg, #252035, #191523);
+  box-shadow: 0 16px 38px rgba(0,0,0,.18);
+}
+
+.player-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.album-art {
+  flex: 0 0 53px;
+  width: 53px;
+  height: 53px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
   color: var(--pink);
-  font-size: 24px;
-  margin-bottom: 12px;
+  font-size: 23px;
+  background: linear-gradient(135deg, #694c80, #302a51 70%, #39243e);
+}
+
+.track-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.track-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.35;
+  margin: 0 0 5px;
+}
+
+.track-subtitle {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.play-button {
+  width: 51px;
+  height: 51px;
+  flex: 0 0 51px;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 19px;
+  color: #21172a;
+  background: linear-gradient(145deg, #f6d2e5, #b9a6ff);
+  box-shadow: 0 0 23px rgba(183,163,255,.2);
+  cursor: pointer;
+  transition: transform .2s, opacity .2s;
+}
+
+.play-button:active { transform: scale(.94); }
+
+.play-button:disabled {
+  opacity: .42;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.progress-track {
+  height: 4px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.12);
+  margin-top: 19px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+}
+
+.player-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  margin-top: 9px;
+}
+
+.lock-icon {
+  color: var(--pink);
+  font-size: 22px;
+  margin: 24px 0 8px;
 }
 
 .lock-message {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 1.5;
-  margin: 0 auto 10px;
+  max-width: 330px;
+  margin: 0 auto 9px;
 }
 
 .small-note {
-  max-width: 330px;
-  margin: 0 auto;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.7;
-}
-
-.listen {
-  border: none;
-  border-radius: 30px;
-  padding: 15px 25px;
-  background: var(--pink);
-  color: #251522;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 22px;
-}
-
-.listen[hidden],
-audio[hidden] {
-  display: none;
-}
-
-audio {
-  width: 100%;
-  margin-top: 20px;
+  max-width: 330px;
+  margin: auto;
 }
 
 .footer {
-  color: #a88f9f;
-  font-size: 10px;
+  color: #a89bb6;
+  font-size: 9px;
   letter-spacing: 2px;
-  margin-top: 38px;
+  margin-top: 35px;
 }
 
 @media (max-width: 350px) {
-  .countdown-card {
-    padding: 20px 8px;
-  }
+  body { padding-inline: 12px; }
+  .countdown-card { padding-inline: 7px; }
+  .unit { font-size: 8px; }
+  .player { padding: 13px; }
+  .track-name { font-size: 14px; }
+  .photo-frame img { max-height: 390px; }
+}
 
-  .unit {
-    font-size: 8px;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
   }
 }
 </style>
@@ -215,39 +377,45 @@ audio {
     A little surprise, made just for you. ❤️
   </p>
 
-  <div class="divider"></div>
+  <div class="music-symbol" aria-hidden="true">♫</div>
 
-  <section>
-    <div class="music-mark" aria-hidden="true">♫</div>
+  <h2 class="song-title">Baba Zuva, My Forever</h2>
 
-    <h2 class="song-title">Baba Zuva, My Forever</h2>
+  <p class="dedication">A song dedicated to Bryan by May ❤️</p>
 
-    <p class="dedication">
-      A song dedicated to Bryan by May ❤️
-    </p>
-  </section>
+  <figure class="photo-stage">
+    <div class="photo-frame">
+      <img
+        src="https://pub-e10a28ca38cf452da437555e0f90e288.r2.dev/warstreetmemories/2026%20Memories/Birthdays/May%20to%20Bryan/bryan_01.webp"
+        alt="A special memory of Bryan and May"
+        loading="eager"
+      >
+      <span class="photo-heart" aria-hidden="true">♥</span>
+    </div>
+  </figure>
 
-  <section class="countdown-card">
+  <p class="photo-caption">
+    A little glimpse of your story, made with love.
+  </p>
+
+  <section class="countdown-card" aria-label="Birthday countdown">
     <p class="countdown-label" id="countdown-label">
       YOUR BIRTHDAY COUNTDOWN
     </p>
 
-    <div class="countdown" aria-live="polite">
+    <div class="countdown">
       <div class="time-unit">
         <span class="number" id="days">--</span>
         <span class="unit">DAYS</span>
       </div>
-
       <div class="time-unit">
         <span class="number" id="hours">--</span>
         <span class="unit">HOURS</span>
       </div>
-
       <div class="time-unit">
         <span class="number" id="minutes">--</span>
         <span class="unit">MINS</span>
       </div>
-
       <div class="time-unit">
         <span class="number" id="seconds">--</span>
         <span class="unit">SECS</span>
@@ -255,39 +423,69 @@ audio {
     </div>
   </section>
 
-  <div class="lock" id="lock-icon" aria-hidden="true">♡</div>
+  <section class="player" aria-label="Dedicated birthday song">
+    <div class="player-top">
+      <div class="album-art" aria-hidden="true">♫</div>
+
+      <div class="track-info">
+        <p class="track-name">Baba Zuva, My Forever</p>
+        <p class="track-subtitle" id="track-subtitle">
+          A song from May, for you
+        </p>
+      </div>
+
+      <button
+        class="play-button"
+        id="play-button"
+        type="button"
+        disabled
+        aria-label="Song locked until birthday"
+      >▶</button>
+    </div>
+
+    <div class="progress-track" role="presentation">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <div class="player-meta">
+      <span id="current-time">0:00</span>
+      <span id="player-state">Unlocks on your birthday</span>
+      <span id="duration">0:00</span>
+    </div>
+  </section>
+
+  <audio id="birthday-song" preload="none">
+    <source
+      src="https://pub-e10a28ca38cf452da437555e0f90e288.r2.dev/warstreetmemories/2026%20Memories/Birthdays/May%20to%20Bryan/Baba%20Zuva%20my%20Forever.mp3"
+      type="audio/mpeg"
+    >
+  </audio>
+
+  <div class="lock-icon" id="lock-icon" aria-hidden="true">♡</div>
 
   <p class="lock-message" id="status-message">
     This song will be playable on your birthday.
   </p>
 
   <p class="small-note" id="status-note">
-    Until then, let the countdown begin.
-    Made with love, just for you.
+    Until then, let the countdown begin. Made with love, just for you.
   </p>
-
-  <button class="listen" id="listen-button" type="button" hidden>
-    ▶ Listen to your song
-  </button>
-
-  <audio id="birthday-song" controls preload="none" hidden>
-    <source
-      src="./Baba%20Zuva%20my%20Forever.mp3"
-      type="audio/mpeg"
-    >
-    Your browser does not support audio playback.
-  </audio>
 
   <p class="footer">WARSTREET MEMORIES</p>
 
 </main>
 
 <script>
-// Birthday unlock: 25 October 2026, midnight Zimbabwe time (UTC+2).
+// Birthday: 25 October 2026 at midnight, Zimbabwe time (UTC+2).
 const unlockAt = new Date("2026-10-25T00:00:00+02:00");
 
 const song = document.getElementById("birthday-song");
-const listenButton = document.getElementById("listen-button");
+const playButton = document.getElementById("play-button");
+const trackSubtitle = document.getElementById("track-subtitle");
+const playerState = document.getElementById("player-state");
+const currentTime = document.getElementById("current-time");
+const durationDisplay = document.getElementById("duration");
+const progressFill = document.getElementById("progress-fill");
 const statusMessage = document.getElementById("status-message");
 const statusNote = document.getElementById("status-note");
 const lockIcon = document.getElementById("lock-icon");
@@ -302,58 +500,96 @@ const fields = {
 
 let unlocked = false;
 
+function formatTime(seconds) {
+  if (!Number.isFinite(seconds)) return "0:00";
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${String(secs).padStart(2, "0")}`;
+}
+
+function unlockSong() {
+  if (unlocked) return;
+  unlocked = true;
+
+  playButton.disabled = false;
+  playButton.setAttribute("aria-label", "Play song");
+  trackSubtitle.textContent = "Unlocked for Bryan ❤️";
+  playerState.textContent = "Ready to play";
+
+  statusMessage.textContent =
+    "Happy birthday, Baba Zuva. This song is yours. ❤️";
+  statusNote.textContent = "With all my love, May Tita.";
+  lockIcon.textContent = "♥";
+  countdownLabel.textContent = "HAPPY 27TH BIRTHDAY, BRYAN";
+}
+
 function renderCountdown() {
   const remaining = unlockAt.getTime() - Date.now();
 
   if (remaining <= 0) {
-    Object.values(fields).forEach(field => {
-      field.textContent = "00";
-    });
-
-    countdownLabel.textContent = "HAPPY 27TH BIRTHDAY, BRYAN";
-    statusMessage.textContent =
-      "Happy birthday, Baba Zuva. This song is yours. ❤️";
-    statusNote.textContent = "With all my love, May Tita.";
-    lockIcon.textContent = "♥";
-
-    if (!unlocked) {
-      unlocked = true;
-      song.hidden = false;
-      listenButton.hidden = false;
-      song.load();
-    }
-
+    Object.values(fields).forEach(field => field.textContent = "00");
+    unlockSong();
     return;
   }
 
-  const totalSeconds = Math.floor(remaining / 1000);
+  const total = Math.floor(remaining / 1000);
 
   fields.days.textContent =
-    String(Math.floor(totalSeconds / 86400)).padStart(2, "0");
-
+    String(Math.floor(total / 86400)).padStart(2, "0");
   fields.hours.textContent =
-    String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, "0");
-
+    String(Math.floor((total % 86400) / 3600)).padStart(2, "0");
   fields.minutes.textContent =
-    String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
-
+    String(Math.floor((total % 3600) / 60)).padStart(2, "0");
   fields.seconds.textContent =
-    String(totalSeconds % 60).padStart(2, "0");
+    String(total % 60).padStart(2, "0");
 }
 
-listenButton.addEventListener("click", async () => {
+playButton.addEventListener("click", async () => {
+  if (!unlocked) return;
+
   try {
-    await song.play();
-  } catch (error) {
-    statusNote.textContent =
-      "Use the audio player below to play your song.";
-    song.hidden = false;
+    if (song.paused) await song.play();
+    else song.pause();
+  } catch {
+    playerState.textContent = "Could not play — check connection";
   }
+});
+
+song.addEventListener("play", () => {
+  playButton.textContent = "Ⅱ";
+  playButton.setAttribute("aria-label", "Pause song");
+  playerState.textContent = "Now playing";
+});
+
+song.addEventListener("pause", () => {
+  playButton.textContent = "▶";
+  playButton.setAttribute("aria-label", "Play song");
+  if (unlocked && !song.ended) playerState.textContent = "Paused";
+});
+
+song.addEventListener("loadedmetadata", () => {
+  durationDisplay.textContent = formatTime(song.duration);
+});
+
+song.addEventListener("timeupdate", () => {
+  currentTime.textContent = formatTime(song.currentTime);
+
+  const percentage = song.duration
+    ? (song.currentTime / song.duration) * 100
+    : 0;
+
+  progressFill.style.width = `${percentage}%`;
+});
+
+song.addEventListener("ended", () => {
+  playButton.textContent = "▶";
+  playerState.textContent = "Finished";
+  progressFill.style.width = "0%";
+  currentTime.textContent = "0:00";
 });
 
 renderCountdown();
 setInterval(renderCountdown, 1000);
 </script>
-
 </body>
 </html>
