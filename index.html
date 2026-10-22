@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#160d16">
+<title>For Bryan Mabani | WarStreet Memories</title>
+
+<style>
+:root {
+  --bg: #160d16;
+  --panel: #251725;
+  --pink: #e6b8cc;
+  --muted: #bdaab8;
+  --line: #493343;
+  --white: #fff8fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  background: radial-gradient(ellipse at top, #352034, var(--bg) 60%);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+main {
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--pink);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 9vw, 54px);
+  font-weight: normal;
+  line-height: 1.12;
+  margin: 22px 0 12px;
+}
+
+.intro {
+  color: #e0d2dc;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--line),
+    transparent
+  );
+  margin: 28px 0;
+}
+
+.music-mark {
+  width: 58px;
+  height: 58px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+  color: var(--pink);
+  font-size: 27px;
+}
+
+.song-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: normal;
+  font-size: clamp(25px, 6vw, 32px);
+  color: var(--pink);
+  margin: 0 0 10px;
+}
+
+.dedication {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.countdown-card {
+  background: rgba(37, 23, 37, 0.9);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 24px 12px;
+  margin: 28px 0;
+}
+
+.countdown-label {
+  color: var(--pink);
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 0 0 20px;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.time-unit {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 12px;
+  padding: 14px 2px;
+}
+
+.number {
+  display: block;
+  font-size: clamp(23px, 6vw, 31px);
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+}
+
+.unit {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
+
+.lock {
+  color: var(--pink);
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.lock-message {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  line-height: 1.5;
+  margin: 0 auto 10px;
+}
+
+.small-note {
+  max-width: 330px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.listen {
+  border: none;
+  border-radius: 30px;
+  padding: 15px 25px;
+  background: var(--pink);
+  color: #251522;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 22px;
+}
+
+.listen[hidden],
+audio[hidden] {
+  display: none;
+}
+
+audio {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.footer {
+  color: #a88f9f;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-top: 38px;
+}
+
+@media (max-width: 350px) {
+  .countdown-card {
+    padding: 20px 8px;
+  }
+
+  .unit {
+    font-size: 8px;
+  }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+  <p class="eyebrow">A birthday gift from May Tita</p>
+
+  <h1>For Bryan Mabani</h1>
+
+  <p class="intro">
+    Your 27th birthday is almost here.<br>
+    A little surprise, made just for you. ❤️
+  </p>
+
+  <div class="divider"></div>
+
+  <section>
+    <div class="music-mark" aria-hidden="true">♫</div>
+
+    <h2 class="song-title">Baba Zuva, My Forever</h2>
+
+    <p class="dedication">
+      A song dedicated to Bryan by May ❤️
+    </p>
+  </section>
+
+  <section class="countdown-card">
+    <p class="countdown-label" id="countdown-label">
+      YOUR BIRTHDAY COUNTDOWN
+    </p>
+
+    <div class="countdown" aria-live="polite">
+      <div class="time-unit">
+        <span class="number" id="days">--</span>
+        <span class="unit">DAYS</span>
+      </div>
+
+      <div class="time-unit">
+        <span class="number" id="hours">--</span>
+        <span class="unit">HOURS</span>
+      </div>
+
+      <div class="time-unit">
+        <span class="number" id="minutes">--</span>
+        <span class="unit">MINS</span>
+      </div>
+
+      <div class="time-unit">
+        <span class="number" id="seconds">--</span>
+        <span class="unit">SECS</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="lock" id="lock-icon" aria-hidden="true">♡</div>
+
+  <p class="lock-message" id="status-message">
+    This song will be playable on your birthday.
+  </p>
+
+  <p class="small-note" id="status-note">
+    Until then, let the countdown begin.
+    Made with love, just for you.
+  </p>
+
+  <button class="listen" id="listen-button" type="button" hidden>
+    ▶ Listen to your song
+  </button>
+
+  <audio id="birthday-song" controls preload="none" hidden>
+    <source
+      src="./Baba%20Zuva%20my%20Forever.mp3"
+      type="audio/mpeg"
+    >
+    Your browser does not support audio playback.
+  </audio>
+
+  <p class="footer">WARSTREET MEMORIES</p>
+
+</main>
+
+<script>
+// Birthday unlock: 25 October 2026, midnight Zimbabwe time (UTC+2).
+const unlockAt = new Date("2026-10-25T00:00:00+02:00");
+
+const song = document.getElementById("birthday-song");
+const listenButton = document.getElementById("listen-button");
+const statusMessage = document.getElementById("status-message");
+const statusNote = document.getElementById("status-note");
+const lockIcon = document.getElementById("lock-icon");
+const countdownLabel = document.getElementById("countdown-label");
+
+const fields = {
+  days: document.getElementById("days"),
+  hours: document.getElementById("hours"),
+  minutes: document.getElementById("minutes"),
+  seconds: document.getElementById("seconds")
+};
+
+let unlocked = false;
+
+function renderCountdown() {
+  const remaining = unlockAt.getTime() - Date.now();
+
+  if (remaining <= 0) {
+    Object.values(fields).forEach(field => {
+      field.textContent = "00";
+    });
+
+    countdownLabel.textContent = "HAPPY 27TH BIRTHDAY, BRYAN";
+    statusMessage.textContent =
+      "Happy birthday, Baba Zuva. This song is yours. ❤️";
+    statusNote.textContent = "With all my love, May Tita.";
+    lockIcon.textContent = "♥";
+
+    if (!unlocked) {
+      unlocked = true;
+      song.hidden = false;
+      listenButton.hidden = false;
+      song.load();
+    }
+
+    return;
+  }
+
+  const totalSeconds = Math.floor(remaining / 1000);
+
+  fields.days.textContent =
+    String(Math.floor(totalSeconds / 86400)).padStart(2, "0");
+
+  fields.hours.textContent =
+    String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, "0");
+
+  fields.minutes.textContent =
+    String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+
+  fields.seconds.textContent =
+    String(totalSeconds % 60).padStart(2, "0");
+}
+
+listenButton.addEventListener("click", async () => {
+  try {
+    await song.play();
+  } catch (error) {
+    statusNote.textContent =
+      "Use the audio player below to play your song.";
+    song.hidden = false;
+  }
+});
+
+renderCountdown();
+setInterval(renderCountdown, 1000);
+</script>
+
+</body>
+</html>
