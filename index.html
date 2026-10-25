@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#100d19">
+<meta name="description" content="A birthday song and memory dedicated to Bryan Mabani by May Tita.">
 <title>Baba Zuva, My Forever | WarStreet Memories</title>
 
 <style>
@@ -94,7 +94,6 @@ h1 {
   margin: 0;
 }
 
-/* Glowing photo memory card */
 .photo-stage {
   position: relative;
   width: 100%;
@@ -112,11 +111,7 @@ h1 {
   border-radius: 29px;
   background: conic-gradient(
     from 0deg,
-    #a98aff,
-    #f1b9d5,
-    #6e8dff,
-    #c59aff,
-    #a98aff
+    #a98aff, #f1b9d5, #6e8dff, #c59aff, #a98aff
   );
   filter: blur(13px);
   opacity: .42;
@@ -175,7 +170,6 @@ h1 {
   100% { filter: blur(13px); opacity: .30; }
 }
 
-/* Countdown */
 .countdown-card {
   background: linear-gradient(145deg, rgba(40,34,59,.92), rgba(26,22,39,.96));
   border: 1px solid var(--line);
@@ -221,7 +215,6 @@ h1 {
   margin-top: 8px;
 }
 
-/* Custom music player */
 .player {
   text-align: left;
   border: 1px solid rgba(255,255,255,.11);
@@ -267,6 +260,7 @@ h1 {
   font-size: 11px;
   color: var(--muted);
   margin: 0;
+  line-height: 1.5;
 }
 
 .play-button {
@@ -287,10 +281,9 @@ h1 {
 
 .play-button:active { transform: scale(.94); }
 
-.play-button:disabled {
-  opacity: .42;
-  cursor: not-allowed;
-  box-shadow: none;
+.play-button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 4px;
 }
 
 .progress-track {
@@ -306,6 +299,7 @@ h1 {
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--purple), var(--pink));
+  transition: width .1s linear;
 }
 
 .player-meta {
@@ -367,13 +361,12 @@ h1 {
 
 <body>
 <main>
-
   <p class="eyebrow">A birthday gift from May Tita</p>
 
   <h1>For Bryan Mabani</h1>
 
   <p class="intro">
-    Your 27th birthday is almost here.<br>
+    Your 27th birthday is here.<br>
     A little surprise, made just for you. ❤️
   </p>
 
@@ -400,24 +393,24 @@ h1 {
 
   <section class="countdown-card" aria-label="Birthday countdown">
     <p class="countdown-label" id="countdown-label">
-      YOUR BIRTHDAY COUNTDOWN
+      HAPPY 27TH BIRTHDAY, BRYAN
     </p>
 
     <div class="countdown">
       <div class="time-unit">
-        <span class="number" id="days">--</span>
+        <span class="number" id="days">00</span>
         <span class="unit">DAYS</span>
       </div>
       <div class="time-unit">
-        <span class="number" id="hours">--</span>
+        <span class="number" id="hours">00</span>
         <span class="unit">HOURS</span>
       </div>
       <div class="time-unit">
-        <span class="number" id="minutes">--</span>
+        <span class="number" id="minutes">00</span>
         <span class="unit">MINS</span>
       </div>
       <div class="time-unit">
-        <span class="number" id="seconds">--</span>
+        <span class="number" id="seconds">00</span>
         <span class="unit">SECS</span>
       </div>
     </div>
@@ -430,7 +423,7 @@ h1 {
       <div class="track-info">
         <p class="track-name">Baba Zuva, My Forever</p>
         <p class="track-subtitle" id="track-subtitle">
-          A song from May, for you
+          Your birthday song from May ❤️
         </p>
       </div>
 
@@ -438,8 +431,7 @@ h1 {
         class="play-button"
         id="play-button"
         type="button"
-        disabled
-        aria-label="Song locked until birthday"
+        aria-label="Play birthday song"
       >▶</button>
     </div>
 
@@ -449,147 +441,184 @@ h1 {
 
     <div class="player-meta">
       <span id="current-time">0:00</span>
-      <span id="player-state">Unlocks on your birthday</span>
+      <span id="player-state" aria-live="polite">Ready to play</span>
       <span id="duration">0:00</span>
     </div>
   </section>
 
-  <audio id="birthday-song" preload="none">
+  <!-- The audio file must be in the same folder as this index.html. -->
+  <audio id="birthday-song" preload="metadata">
     <source
-      src="https://pub-e10a28ca38cf452da437555e0f90e288.r2.dev/warstreetmemories/2026%20Memories/Birthdays/May%20to%20Bryan/Baba%20Zuva%20my%20Forever.mp3"
-      type="audio/mpeg"
+      src="./Baba Zuva, My Forever 💗.m4a"
+      type="audio/mp4"
     >
   </audio>
 
-  <div class="lock-icon" id="lock-icon" aria-hidden="true">♡</div>
+  <div class="lock-icon" id="lock-icon" aria-hidden="true">♥</div>
 
   <p class="lock-message" id="status-message">
-    This song will be playable on your birthday.
+    Happy 27th birthday, Baba Zuva. This song is yours. ❤️
   </p>
 
   <p class="small-note" id="status-note">
-    Until then, let the countdown begin. Made with love, just for you.
+    With all my love, May Tita. Happy first anniversary to us. ❤️
   </p>
 
   <p class="footer">WARSTREET MEMORIES</p>
-
 </main>
 
 <script>
-// Birthday: 25 October 2026 at midnight, Zimbabwe time (UTC+2).
-const unlockAt = new Date("2026-10-25T00:00:00+02:00");
+(() => {
+  "use strict";
 
-const song = document.getElementById("birthday-song");
-const playButton = document.getElementById("play-button");
-const trackSubtitle = document.getElementById("track-subtitle");
-const playerState = document.getElementById("player-state");
-const currentTime = document.getElementById("current-time");
-const durationDisplay = document.getElementById("duration");
-const progressFill = document.getElementById("progress-fill");
-const statusMessage = document.getElementById("status-message");
-const statusNote = document.getElementById("status-note");
-const lockIcon = document.getElementById("lock-icon");
-const countdownLabel = document.getElementById("countdown-label");
+  // Birthday: 25 October 2026 at midnight, Zimbabwe time (UTC+2).
+  const unlockAt = new Date("2026-10-25T00:00:00+02:00");
 
-const fields = {
-  days: document.getElementById("days"),
-  hours: document.getElementById("hours"),
-  minutes: document.getElementById("minutes"),
-  seconds: document.getElementById("seconds")
-};
+  const song = document.getElementById("birthday-song");
+  const playButton = document.getElementById("play-button");
+  const trackSubtitle = document.getElementById("track-subtitle");
+  const playerState = document.getElementById("player-state");
+  const currentTime = document.getElementById("current-time");
+  const durationDisplay = document.getElementById("duration");
+  const progressFill = document.getElementById("progress-fill");
+  const statusMessage = document.getElementById("status-message");
+  const statusNote = document.getElementById("status-note");
+  const countdownLabel = document.getElementById("countdown-label");
 
-let unlocked = false;
+  const fields = {
+    days: document.getElementById("days"),
+    hours: document.getElementById("hours"),
+    minutes: document.getElementById("minutes"),
+    seconds: document.getElementById("seconds")
+  };
 
-function formatTime(seconds) {
-  if (!Number.isFinite(seconds)) return "0:00";
-  const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
-  return `${mins}:${String(secs).padStart(2, "0")}`;
-}
+  let unlocked = Date.now() >= unlockAt.getTime();
 
-function unlockSong() {
-  if (unlocked) return;
-  unlocked = true;
+  function formatTime(seconds) {
+    if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
 
-  playButton.disabled = false;
-  playButton.setAttribute("aria-label", "Play song");
-  trackSubtitle.textContent = "Unlocked for Bryan ❤️";
-  playerState.textContent = "Ready to play";
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
 
-  statusMessage.textContent =
-    "Happy birthday, Baba Zuva. This song is yours. ❤️";
-  statusNote.textContent = "With all my love, May Tita.";
-  lockIcon.textContent = "♥";
-  countdownLabel.textContent = "HAPPY 27TH BIRTHDAY, BRYAN";
-}
+    return `${mins}:${String(secs).padStart(2, "0")}`;
+  }
 
-function renderCountdown() {
-  const remaining = unlockAt.getTime() - Date.now();
+  function unlockSong() {
+    unlocked = true;
 
-  if (remaining <= 0) {
-    Object.values(fields).forEach(field => field.textContent = "00");
+    playButton.disabled = false;
+    playButton.setAttribute("aria-label", "Play birthday song");
+    trackSubtitle.textContent = "Your birthday song from May ❤️";
+    countdownLabel.textContent = "HAPPY 27TH BIRTHDAY, BRYAN";
+    statusMessage.textContent =
+      "Happy birthday, Baba Zuva. This song is yours. ❤️";
+    statusNote.textContent =
+      "With all my love, May Tita. Happy first anniversary to us. ❤️";
+  }
+
+  function renderCountdown() {
+    const remaining = unlockAt.getTime() - Date.now();
+
+    if (remaining <= 0) {
+      Object.values(fields).forEach(field => {
+        field.textContent = "00";
+      });
+
+      unlockSong();
+      return;
+    }
+
+    const total = Math.floor(remaining / 1000);
+
+    fields.days.textContent =
+      String(Math.floor(total / 86400)).padStart(2, "0");
+    fields.hours.textContent =
+      String(Math.floor((total % 86400) / 3600)).padStart(2, "0");
+    fields.minutes.textContent =
+      String(Math.floor((total % 3600) / 60)).padStart(2, "0");
+    fields.seconds.textContent =
+      String(total % 60).padStart(2, "0");
+  }
+
+  playButton.addEventListener("click", async () => {
+    if (!unlocked) return;
+
+    try {
+      if (song.paused) {
+        playerState.textContent = "Loading song…";
+        await song.play();
+      } else {
+        song.pause();
+      }
+    } catch (error) {
+      console.error("Birthday song playback failed:", error);
+      playerState.textContent = "Could not play — check file and connection";
+      trackSubtitle.textContent =
+        "Check the audio filename and try again.";
+    }
+  });
+
+  song.addEventListener("play", () => {
+    playButton.textContent = "Ⅱ";
+    playButton.setAttribute("aria-label", "Pause birthday song");
+    playerState.textContent = "Now playing";
+    trackSubtitle.textContent = "Playing for you, Bryan ❤️";
+  });
+
+  song.addEventListener("pause", () => {
+    playButton.textContent = "▶";
+    playButton.setAttribute("aria-label", "Play birthday song");
+
+    if (!song.ended && unlocked) {
+      playerState.textContent = "Paused";
+    }
+  });
+
+  song.addEventListener("loadedmetadata", () => {
+    durationDisplay.textContent = formatTime(song.duration);
+  });
+
+  song.addEventListener("timeupdate", () => {
+    currentTime.textContent = formatTime(song.currentTime);
+
+    const percentage = Number.isFinite(song.duration) && song.duration > 0
+      ? (song.currentTime / song.duration) * 100
+      : 0;
+
+    progressFill.style.width = `${percentage}%`;
+  });
+
+  song.addEventListener("ended", () => {
+    playButton.textContent = "▶";
+    playButton.setAttribute("aria-label", "Replay birthday song");
+    playerState.textContent = "Finished";
+    progressFill.style.width = "0%";
+    currentTime.textContent = "0:00";
+    trackSubtitle.textContent = "Tap play to hear it again ❤️";
+  });
+
+  song.addEventListener("error", () => {
+    playerState.textContent = "Audio file unavailable";
+    trackSubtitle.textContent =
+      "Check that the M4A file is in the same folder as index.html.";
+  });
+
+  // Set the correct state immediately when the page loads.
+  if (unlocked) {
     unlockSong();
-    return;
+  } else {
+    playButton.disabled = true;
+    playButton.setAttribute("aria-label", "Song locked until birthday");
+    playerState.textContent = "Unlocks on your birthday";
+    statusMessage.textContent =
+      "This song will be playable on your birthday.";
+    statusNote.textContent =
+      "Until then, let the countdown begin. Made with love, just for you.";
   }
 
-  const total = Math.floor(remaining / 1000);
-
-  fields.days.textContent =
-    String(Math.floor(total / 86400)).padStart(2, "0");
-  fields.hours.textContent =
-    String(Math.floor((total % 86400) / 3600)).padStart(2, "0");
-  fields.minutes.textContent =
-    String(Math.floor((total % 3600) / 60)).padStart(2, "0");
-  fields.seconds.textContent =
-    String(total % 60).padStart(2, "0");
-}
-
-playButton.addEventListener("click", async () => {
-  if (!unlocked) return;
-
-  try {
-    if (song.paused) await song.play();
-    else song.pause();
-  } catch {
-    playerState.textContent = "Could not play — check connection";
-  }
-});
-
-song.addEventListener("play", () => {
-  playButton.textContent = "Ⅱ";
-  playButton.setAttribute("aria-label", "Pause song");
-  playerState.textContent = "Now playing";
-});
-
-song.addEventListener("pause", () => {
-  playButton.textContent = "▶";
-  playButton.setAttribute("aria-label", "Play song");
-  if (unlocked && !song.ended) playerState.textContent = "Paused";
-});
-
-song.addEventListener("loadedmetadata", () => {
-  durationDisplay.textContent = formatTime(song.duration);
-});
-
-song.addEventListener("timeupdate", () => {
-  currentTime.textContent = formatTime(song.currentTime);
-
-  const percentage = song.duration
-    ? (song.currentTime / song.duration) * 100
-    : 0;
-
-  progressFill.style.width = `${percentage}%`;
-});
-
-song.addEventListener("ended", () => {
-  playButton.textContent = "▶";
-  playerState.textContent = "Finished";
-  progressFill.style.width = "0%";
-  currentTime.textContent = "0:00";
-});
-
-renderCountdown();
-setInterval(renderCountdown, 1000);
+  renderCountdown();
+  setInterval(renderCountdown, 1000);
+})();
 </script>
 </body>
 </html>
