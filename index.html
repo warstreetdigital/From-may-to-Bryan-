@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#100d19">
 <meta name="description" content="Baba Zuva, My Forever — a birthday song dedicated to Bryan by May.">
-<title>Baba Zuva, My Forever | WarStreet Memories</title>
+
+<title>Baba Zuva, My Forever | Warstreet Memories</title>
 
 <style>
 :root {
   --bg: #100d19;
-  --card: #1d1728;
   --pink: #f1b9d5;
   --purple: #b7a3ff;
   --text: #fff9ff;
@@ -31,10 +32,19 @@ body {
   justify-content: center;
   color: var(--text);
   background:
-    radial-gradient(ellipse at 15% 10%, rgba(151,92,194,.18), transparent 45%),
-    radial-gradient(ellipse at 90% 75%, rgba(224,119,176,.12), transparent 42%),
+    radial-gradient(
+      ellipse at 15% 10%,
+      rgba(151,92,194,.18),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 90% 75%,
+      rgba(224,119,176,.12),
+      transparent 42%
+    ),
     var(--bg);
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
 }
 
 main {
@@ -45,9 +55,15 @@ main {
 
 .photo-frame {
   overflow: hidden;
+  margin: 0;
   padding: 6px;
   border-radius: 23px;
-  background: linear-gradient(145deg, #40304f, #1b1627, #503046);
+  background: linear-gradient(
+    145deg,
+    #40304f,
+    #1b1627,
+    #503046
+  );
   border: 1px solid rgba(255,255,255,.13);
   box-shadow: 0 18px 50px rgba(0,0,0,.35);
 }
@@ -88,7 +104,11 @@ main {
   padding: 17px;
   border: 1px solid rgba(255,255,255,.10);
   border-radius: 20px;
-  background: linear-gradient(145deg, rgba(40,34,59,.95), rgba(26,22,39,.98));
+  background: linear-gradient(
+    145deg,
+    rgba(40,34,59,.95),
+    rgba(26,22,39,.98)
+  );
   box-shadow: 0 15px 38px rgba(0,0,0,.2);
 }
 
@@ -107,7 +127,12 @@ main {
   border-radius: 14px;
   color: var(--pink);
   font-size: 23px;
-  background: linear-gradient(135deg, #694c80, #302a51 70%, #39243e);
+  background: linear-gradient(
+    135deg,
+    #694c80,
+    #302a51 70%,
+    #39243e
+  );
 }
 
 .track-info {
@@ -138,7 +163,11 @@ main {
   border: 0;
   border-radius: 50%;
   color: #21172a;
-  background: linear-gradient(145deg, #f6d2e5, #b9a6ff);
+  background: linear-gradient(
+    145deg,
+    #f6d2e5,
+    #b9a6ff
+  );
   font-size: 19px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -148,13 +177,18 @@ main {
   transform: scale(.95);
 }
 
+.play-button:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
 .play-button:focus-visible {
   outline: 2px solid white;
   outline-offset: 4px;
 }
 
 .progress-track {
-  height: 4px;
+  height: 5px;
   margin-top: 18px;
   overflow: hidden;
   border-radius: 8px;
@@ -165,12 +199,17 @@ main {
   width: 0;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--purple), var(--pink));
+  background: linear-gradient(
+    90deg,
+    var(--purple),
+    var(--pink)
+  );
 }
 
 .player-meta {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 8px;
   margin-top: 9px;
   color: var(--muted);
@@ -202,6 +241,10 @@ main {
   .track-name {
     font-size: 14px;
   }
+
+  .player-meta {
+    font-size: 9px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -215,6 +258,7 @@ main {
 
 <body>
 <main>
+
   <figure class="photo-frame">
     <img
       src="https://pub-e10a28ca38cf452da437555e0f90e288.r2.dev/warstreetmemories/2026%20Memories/Birthdays/May%20to%20Bryan/bryan_01.webp"
@@ -232,13 +276,15 @@ main {
   </header>
 
   <section class="player" aria-label="Birthday song player">
+
     <div class="player-top">
+
       <div class="album-art" aria-hidden="true">♫</div>
 
       <div class="track-info">
         <p class="track-name">Baba Zuva, My Forever</p>
         <p class="track-subtitle" id="track-subtitle">
-          A song made just for you
+          A song made just for you ❤️
         </p>
       </div>
 
@@ -248,52 +294,89 @@ main {
         type="button"
         aria-label="Play song"
       >▶</button>
+
     </div>
 
-    <div class="progress-track">
+    <div
+      class="progress-track"
+      id="progress-track"
+      role="progressbar"
+      aria-label="Song progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+    >
       <div class="progress-fill" id="progress-fill"></div>
     </div>
 
     <div class="player-meta">
       <span id="current-time">0:00</span>
-      <span id="player-state" aria-live="polite">Ready to play</span>
+      <span id="player-state" aria-live="polite">
+        Ready to play
+      </span>
       <span id="duration">0:00</span>
     </div>
+
   </section>
 
-  <!-- Audio file is stored beside index.html in the repository root. -->
+  <!-- MP3 file is in the same root folder as index.html. -->
   <audio id="birthday-song" preload="metadata">
-    <source
-      src="./Baba%20Zuva%2C%20My%20Forever%20%F0%9F%92%97.m4a"
-      type="audio/mp4"
-    >
+    <source src="./birthday-song.mp3" type="audio/mpeg">
+    Your browser does not support audio playback.
   </audio>
 
   <p class="footer">WARSTREET MEMORIES</p>
+
 </main>
 
 <script>
 (() => {
+  "use strict";
+
   const song = document.getElementById("birthday-song");
-  const playButton = document.getElementById("play-button");
-  const playerState = document.getElementById("player-state");
-  const trackSubtitle = document.getElementById("track-subtitle");
+  const button = document.getElementById("play-button");
+  const state = document.getElementById("player-state");
+  const subtitle = document.getElementById("track-subtitle");
   const currentTime = document.getElementById("current-time");
   const duration = document.getElementById("duration");
   const progressFill = document.getElementById("progress-fill");
+  const progressTrack = document.getElementById("progress-track");
 
   let loading = false;
 
   function formatTime(value) {
-    if (!Number.isFinite(value) || value < 0) return "0:00";
+    if (!Number.isFinite(value) || value < 0) {
+      return "0:00";
+    }
 
     const minutes = Math.floor(value / 60);
     const seconds = Math.floor(value % 60);
 
-    return `${minutes}:${String(seconds).padStart(2, "0")}`;
+    return minutes + ":" + String(seconds).padStart(2, "0");
   }
 
-  playButton.addEventListener("click", async () => {
+  function updateProgress() {
+    const total = song.duration;
+    const current = song.currentTime;
+
+    currentTime.textContent = formatTime(current);
+
+    duration.textContent = formatTime(total);
+
+    const percentage =
+      Number.isFinite(total) && total > 0
+        ? Math.min(100, (current / total) * 100)
+        : 0;
+
+    progressFill.style.width = percentage + "%";
+
+    progressTrack.setAttribute(
+      "aria-valuenow",
+      String(Math.round(percentage))
+    );
+  }
+
+  button.addEventListener("click", async () => {
     if (loading) return;
 
     if (!song.paused) {
@@ -302,82 +385,90 @@ main {
     }
 
     loading = true;
-    playButton.disabled = true;
-    playerState.textContent = "Loading song…";
+    button.disabled = true;
+    state.textContent = "Loading song…";
 
     try {
+      if (song.error) {
+        song.load();
+      }
+
       await song.play();
     } catch (error) {
-      console.error("Audio playback error:", error);
-      playerState.textContent = "Playback failed";
-      trackSubtitle.textContent =
-        "Check the audio filename and try again.";
+      console.error("Audio playback failed:", error);
+
+      state.textContent = "Unable to play song";
+      subtitle.textContent =
+        "Check the audio file and try again.";
     } finally {
       loading = false;
-      playButton.disabled = false;
+      button.disabled = false;
     }
   });
 
   song.addEventListener("play", () => {
-    playButton.textContent = "Ⅱ";
-    playButton.setAttribute("aria-label", "Pause song");
-    playerState.textContent = "Now playing";
-    trackSubtitle.textContent = "Playing with love ❤️";
+    button.textContent = "Ⅱ";
+    button.setAttribute("aria-label", "Pause song");
+    state.textContent = "Loading…";
+  });
+
+  song.addEventListener("playing", () => {
+    button.textContent = "Ⅱ";
+    button.setAttribute("aria-label", "Pause song");
+    state.textContent = "Now playing";
+    subtitle.textContent = "Playing with love ❤️";
   });
 
   song.addEventListener("pause", () => {
-    playButton.textContent = "▶";
-    playButton.setAttribute("aria-label", "Play song");
+    button.textContent = "▶";
+    button.setAttribute("aria-label", "Play song");
 
-    if (!song.ended) {
-      playerState.textContent = "Paused";
+    if (!song.ended && !song.error) {
+      state.textContent = "Paused";
     }
   });
 
   song.addEventListener("loadedmetadata", () => {
-    duration.textContent = formatTime(song.duration);
+    updateProgress();
+    state.textContent = "Ready to play";
   });
 
-  song.addEventListener("timeupdate", () => {
-    currentTime.textContent = formatTime(song.currentTime);
-
-    const percentage =
-      Number.isFinite(song.duration) && song.duration > 0
-        ? (song.currentTime / song.duration) * 100
-        : 0;
-
-    progressFill.style.width = `${percentage}%`;
-  });
-
-  song.addEventListener("ended", () => {
-    playButton.textContent = "▶";
-    playButton.setAttribute("aria-label", "Replay song");
-    playerState.textContent = "Finished";
-    trackSubtitle.textContent = "Made just for you, Bryan ❤️";
-    progressFill.style.width = "0%";
-    currentTime.textContent = "0:00";
-  });
-
-  song.addEventListener("error", () => {
-    playerState.textContent = "Could not load audio";
-    trackSubtitle.textContent =
-      "Verify the exact filename and deployed file path.";
-    console.error("Audio error details:", song.error);
-  });
+  song.addEventListener("durationchange", updateProgress);
+  song.addEventListener("timeupdate", updateProgress);
 
   song.addEventListener("waiting", () => {
-    playerState.textContent = "Buffering…";
-  });
-
-  song.addEventListener("playing", () => {
-    playerState.textContent = "Now playing";
+    state.textContent = "Buffering…";
   });
 
   song.addEventListener("canplay", () => {
     if (song.paused && !song.error) {
-      playerState.textContent = "Ready to play";
+      state.textContent = "Ready to play";
     }
   });
+
+  song.addEventListener("ended", () => {
+    button.textContent = "▶";
+    button.setAttribute("aria-label", "Replay song");
+
+    state.textContent = "Finished";
+    subtitle.textContent = "Made just for you, Bryan ❤️";
+
+    progressFill.style.width = "0%";
+    currentTime.textContent = "0:00";
+
+    progressTrack.setAttribute("aria-valuenow", "0");
+  });
+
+  song.addEventListener("error", () => {
+    const errorCode = song.error ? song.error.code : "unknown";
+
+    console.error("Audio error code:", errorCode);
+
+    state.textContent = "Could not load audio";
+    subtitle.textContent =
+      "Check that birthday-song.mp3 exists beside index.html.";
+  });
+
 })();
 </script>
 </body>
